@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 
 class Navigatorium {
 
-  static Future<dynamic>push(
+  static Navigatorium instance = Navigatorium();
+
+  Future<dynamic> push(
     BuildContext context,
     {
       @required Widget child
     }
   )async{
-    return await Navigator.of(context)
+    return Navigator.of(context)
     .push(PageRouteBuilder(
       barrierColor: Color(0x77000000),
       pageBuilder: (context,_,__)=> child,
@@ -39,19 +41,19 @@ class Navigatorium {
     ));
   }
 
-  static Future<dynamic> changeWidget(BuildContext context,{
+  Future<dynamic> changeWidget(BuildContext context,{
     @required Widget child
   }) async{
     Navigator.of(context).pop();
-    return await push(context,
+    return push(context,
       child: child
     );
   }
 
-  static Future<void> newRoute(BuildContext context,{
+  Future<void> newRoute(BuildContext context,{
     @required Widget child
   }) async{
-    return await Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
+    return Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
       barrierColor: Color(0x77000000),
       pageBuilder: (contet,_,__) => child,
       transitionDuration: const Duration(milliseconds: 500),
