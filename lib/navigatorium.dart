@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 class Navigatorium {
 
-  static Navigatorium instance = Navigatorium();
-
-  Future<dynamic>push(
+  static Future<dynamic>push(
     BuildContext context,
     {
       @required Widget child
@@ -41,7 +39,7 @@ class Navigatorium {
     ));
   }
 
-  Future<dynamic> changeWidget(BuildContext context,{
+  static Future<dynamic> changeWidget(BuildContext context,{
     @required Widget child
   }) async{
     Navigator.of(context).pop();
@@ -50,7 +48,7 @@ class Navigatorium {
     );
   }
 
-  Future<void> newRoute(BuildContext context,{
+  static Future<void> newRoute(BuildContext context,{
     @required Widget child
   }) async{
     return await Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
