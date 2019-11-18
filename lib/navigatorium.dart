@@ -12,7 +12,7 @@ class Navigatorium {
       @required Widget child
     }
   )async{
-    return Navigator.of(context)
+    return await Navigator.of(context)
     .push(PageRouteBuilder(
       barrierColor: Color(0x77000000),
       pageBuilder: (context,_,__)=> child,
@@ -45,7 +45,7 @@ class Navigatorium {
     @required Widget child
   }) async{
     Navigator.of(context).pop();
-    return push(context,
+    return await push(context,
       child: child
     );
   }
@@ -53,7 +53,7 @@ class Navigatorium {
   Future<void> newRoute(BuildContext context,{
     @required Widget child
   }) async{
-    return Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
+    return await Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
       barrierColor: Color(0x77000000),
       pageBuilder: (contet,_,__) => child,
       transitionDuration: const Duration(milliseconds: 500),
