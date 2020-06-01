@@ -41,6 +41,27 @@ class Navigatorium {
     ));
   }
 
+  Future<dynamic> pushWithNoAnimate(BuildContext context,{@required Widget child}){
+    return Navigator.of(context).push(
+      PageRouteBuilder(
+        barrierColor: Color(0x11000000),
+        pageBuilder: (context,_,__) => child,
+        transitionDuration: const Duration(milliseconds: 500),
+        transitionsBuilder: (context,anim,_,child){
+          return FadeTransition(
+            opacity: Tween<double>(begin: 0, end: 1).animate(
+              CurvedAnimation(
+                curve: Curves.easeIn,
+                parent: anim
+              )
+            ),
+            child: child,
+          );
+        }
+      )
+    );
+  }
+
   Future<dynamic> changeWidget(BuildContext context,{
     @required Widget child
   }) async{
@@ -48,6 +69,13 @@ class Navigatorium {
     return push(context,
       child: child
     );
+  }
+
+  Future<dynamic> changeWidgetNoAnimate(BuildContext context,{
+    @required Widget child
+  }) async{
+    Navigator.of(context).pop();
+    return pushWithNoAnimate(context, child: child);
   }
 
   Future<void> newRoute(BuildContext context,{
