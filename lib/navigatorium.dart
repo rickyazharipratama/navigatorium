@@ -9,7 +9,7 @@ class Navigatorium {
   Future<dynamic> push(
     BuildContext context,
     {
-      @required Widget child
+      required Widget child
     }
   )async{
     return Navigator.of(context)
@@ -41,7 +41,7 @@ class Navigatorium {
     ));
   }
 
-  Future<dynamic> pushWithNoAnimate(BuildContext context,{@required Widget child}){
+  Future<dynamic> pushWithNoAnimate(BuildContext context,{required Widget child}){
     return Navigator.of(context).push(
       PageRouteBuilder(
         barrierColor: Color(0x11000000),
@@ -63,7 +63,7 @@ class Navigatorium {
   }
 
   Future<dynamic> changeWidget(BuildContext context,{
-    @required Widget child
+    required Widget child
   }) async{
     Navigator.of(context).pop();
     return push(context,
@@ -72,16 +72,16 @@ class Navigatorium {
   }
 
   Future<dynamic> changeWidgetNoAnimate(BuildContext context,{
-    @required Widget child
+    required Widget child
   }) async{
     Navigator.of(context).pop();
     return pushWithNoAnimate(context, child: child);
   }
 
   Future<void> newRoute(BuildContext context,{
-    @required Widget child
+    required Widget child
   }) async{
-    return Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
+      Navigator.of(context).pushAndRemoveUntil(PageRouteBuilder(
       barrierColor: Color(0x77000000),
       pageBuilder: (contet,_,__) => child,
       transitionDuration: const Duration(milliseconds: 500),
